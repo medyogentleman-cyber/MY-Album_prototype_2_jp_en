@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -86,6 +86,14 @@
         .nav-item.active { color: var(--primary-color); }
         .nav-item svg { width: 24px; height: 24px; fill: currentColor; }
         .nav-fab { background-color: var(--primary-color); color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: -30px; box-shadow: 0 4px 12px rgba(255,107,0,0.3); font-size: 32px; line-height: 1; text-decoration: none; border: 4px solid var(--bg-color); }
+
+        /* Content Tabs */
+        .content-tabs { display: flex; gap: 4px; background: #EAE8F2; padding: 4px; border-radius: 12px; margin-bottom: 20px;}
+        .ct-btn { flex: 1; padding: 10px 2px; font-size: 11px; font-weight: 800; color: var(--text-sub); border: none; background: transparent; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.2s; white-space: nowrap; -webkit-tap-highlight-color: transparent;}
+        .ct-btn.active { background: #FFF; color: var(--primary-color); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .ct-pane { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .ct-pane.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -138,13 +146,87 @@
                 </button>
             </div>
 
-            <div class="list-header">
-                コレクション内容 <span>全 22 コンテンツ</span>
+            <div class="list-header" style="margin-bottom: 12px;">
+                コレクション内容 <span style="font-size: 11px;">全 22 コンテンツ</span>
+            </div>
+
+            <!-- Content Tabs -->
+            <div class="content-tabs">
+                <button class="ct-btn active" data-target="pane-god">神アーカイブ</button>
+                <button class="ct-btn" data-target="pane-artist">共有アーカイブ</button>
+                <button class="ct-btn" data-target="pane-official">公認コンテンツ</button>
             </div>
             
             <!-- Dynamic Content List Container -->
-            <div class="content-list" id="contentList">
-                <!-- Javascript will populate 20 items here -->
+            <!-- Tab 1: God Archive -->
+            <div id="pane-god" class="ct-pane active">
+                <div class="content-list">
+                    <div class="li-item" onclick="location.href='video_edit.html'">
+                        <div class="li-thumb-wrap">
+                            <img src="images/view_tokyolive_list_photo/aoi_01.png" style="filter: contrast(1.15) saturate(1.25) brightness(1.05);">
+                            
+                            <!-- Fan Edited Style Overlay -->
+                            <div style="position: absolute; inset: 0; box-shadow: inset 0 0 20px rgba(255,20,147,0.5); pointer-events: none; border: 3px solid rgba(255,105,180,0.8); box-sizing: border-box;"></div>
+                            <div style="position: absolute; top: 12px; left: 12px; font-size: 15px; font-weight: 900; color: #FFF; text-shadow: 2px 2px 0px #FF1493, -1px -1px 0px #FF1493, 1px -1px 0px #FF1493, -1px 1px 0px #FF1493, 0 4px 6px rgba(0,0,0,0.4); transform: rotate(-6deg); letter-spacing: 1px; z-index: 5;">尊すぎる…😭💕</div>
+                            <div style="position: absolute; bottom: 35px; right: 15px; font-size: 32px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); z-index: 5;">✨💖</div>
+                            <div style="position: absolute; top: 45px; right: 20px; font-size: 20px; z-index: 5;">🌟</div>
+                            <div style="position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.7); color: #FFD700; font-size: 10px; font-weight: 900; padding: 3px 8px; border-radius: 6px; border: 1px solid #FFD700; backdrop-filter: blur(2px); z-index: 5;">✨ 神編集Ver</div>
+                            
+                            <div class="li-badge" style="z-index: 10;">🎥 03:45</div>
+                        </div>
+                        <div class="li-body">
+                            <div class="li-title" style="margin-bottom:0px;">神ファンサの瞬間！！<br><span style="font-size:11px; color:var(--text-sub); font-weight:700;">申請日: 2026/03/24 18:30</span></div>
+                            <div class="li-actions" onclick="event.stopPropagation()">
+                                <button class="li-btn" onclick="toggleVolume(this)">
+                                    <span style="font-size:16px;">🔊</span>
+                                    <span class="count">24.5k</span>
+                                </button>
+                                <button class="li-btn tipping-btn" style="background:#FFF0E6; color:#FF6B00; border-color:rgba(255,107,0,0.3);" onclick="openTipping(event)">
+                                    <span style="font-size:14px;">🎁</span>
+                                    <span>投げ銭</span>
+                                </button>
+                                <button class="li-btn" style="padding: 6px 10px;" onclick="openShare()">
+                                    <span style="font-size:14px;">🔗</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Shared Archive (formerly Artist) -->
+            <div id="pane-artist" class="ct-pane">
+                <div class="content-list" id="contentList">
+                    <!-- Javascript will populate 22 items here -->
+                </div>
+            </div>
+            
+            <!-- Tab 3: Official -->
+            <div id="pane-official" class="ct-pane">
+                <div class="content-list">
+                    <div class="li-item" onclick="location.href='photo_edit.html'">
+                        <div class="li-thumb-wrap">
+                            <img src="images/pre_live_stage.png">
+                            <div class="li-badge">🖼 画像</div>
+                        </div>
+                        <div class="li-body">
+                            <div class="li-title" style="margin-bottom:0px;">ライブ開演前風景<br><span style="font-size:11px; color:var(--text-sub); font-weight:700;">申請日: 2026/03/20 12:15</span></div>
+                            <div class="li-actions" onclick="event.stopPropagation()">
+                                <button class="li-btn" onclick="toggleVolume(this)">
+                                    <span style="font-size:16px;">🔊</span>
+                                    <span class="count">4.2k</span>
+                                </button>
+                                <button class="li-btn tipping-btn" style="background:#FFF0E6; color:#FF6B00; border-color:rgba(255,107,0,0.3);" onclick="openTipping(event)">
+                                    <span style="font-size:14px;">🎁</span>
+                                    <span>投げ銭</span>
+                                </button>
+                                <button class="li-btn" style="padding: 6px 10px;" onclick="openShare()">
+                                    <span style="font-size:14px;">🔗</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div style="height: 40px;"></div>
@@ -231,6 +313,44 @@
             `;
             listContainer.insertAdjacentHTML('beforeend', itemHtml);
         }
+
+        // Tab Navigation Logic
+        const ctBtns = document.querySelectorAll('.ct-btn');
+        const ctPanes = document.querySelectorAll('.ct-pane');
+
+        function activateContentTab(targetId) {
+            ctBtns.forEach(b => {
+                if(b.getAttribute('data-target') === targetId) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+            ctPanes.forEach(p => {
+                if(p.id === targetId) {
+                    p.classList.add('active');
+                } else {
+                    p.classList.remove('active');
+                }
+            });
+        }
+
+        ctBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                activateContentTab(btn.getAttribute('data-target'));
+                history.replaceState(null, null, '#' + btn.getAttribute('data-target'));
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            if(hash && document.getElementById(hash)) {
+                activateContentTab(hash);
+                setTimeout(() => {
+                    document.querySelector('.list-header').scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+            }
+        });
 
         // Action Logic
         function toggleVolume(btn) {

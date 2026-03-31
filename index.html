@@ -179,29 +179,29 @@
 
             <div class="plan-cards mb-6 flex flex-col gap-4">
                 <!-- Basic -->
-                <label id="plan-basic" class="plan-card border border-gray-200 rounded-xl p-4 cursor-pointer relative transition-all" style="border:1px solid #e2e8f0; border-radius:12px; display:block;" tabindex="0" onclick="selectPlan('basic', 600, 'ベーシック_0.5TB/年')">
+                <label id="plan-basic" class="plan-card p-4 cursor-pointer transition-all" style="position:relative; z-index:1; border:1px solid #e2e8f0; border-radius:12px; display:block; padding: 20px 16px; background:#fff; transform:scale(1); box-shadow:none;" tabindex="0" onclick="selectPlan('basic', 600, 'ベーシック_0.5TB/年')">
                     <div class="flex justify-between items-center mb-2">
-                        <span style="font-size: 14px; font-weight: 900; color: #4A5568;">ベーシック</span>
-                        <span style="font-size: 18px; font-weight: 900; color: #1a202c;">¥600<span style="font-size: 12px; color: #718096;"> / 月</span></span>
+                        <span style="font-size: 15px; font-weight: 900; color: #4A5568;">ベーシック</span>
+                        <span style="font-size: 20px; font-weight: 900; color: #1a202c;">¥600<span style="font-size: 12px; color: #718096;"> / 月</span></span>
                     </div>
-                    <div class="text-xs font-bold" style="color: #635BFF;">年間データ転送量上限: 0.5TB</div>
+                    <div class="text-xs font-bold" style="color: #635BFF; display:flex; align-items:center; gap:4px;"><span style="font-size:14px;">☁️</span> 年間データ転送量上限: 0.5TB</div>
                 </label>
                 <!-- Standard -->
-                <label id="plan-standard" class="plan-card border-2 border-primary rounded-xl p-4 cursor-pointer relative transition-all" style="background:#FFF0F5; border: 2px solid var(--primary-color); border-radius:12px; display:block;" tabindex="0" onclick="selectPlan('standard', 900, 'スタンダード_1TB/年')">
-                    <div class="absolute" style="position:absolute; top:-12px; right:12px; background:var(--primary-color); color:white; font-size:10px; font-weight:800; padding:2px 8px; border-radius:12px;">おすすめ</div>
+                <label id="plan-standard" class="plan-card p-4 cursor-pointer transition-all" style="position:relative; z-index:10; background:#FFF0F5; border: 2px solid var(--primary-color); border-radius:12px; display:block; padding: 20px 16px; transform:scale(1.02); box-shadow:0 8px 16px rgba(255,107,0,0.15);" tabindex="0" onclick="selectPlan('standard', 900, 'スタンダード_1TB/年')">
+                    <div style="position:absolute; top:-12px; right:16px; background:linear-gradient(135deg, var(--primary-color), #FF4500); color:white; font-size:11px; font-weight:900; padding:4px 12px; border-radius:20px; box-shadow:0 4px 8px rgba(255,107,0,0.3); letter-spacing:0.5px; border: 1px solid rgba(255,255,255,0.5);">⭐ おすすめ</div>
                     <div class="flex justify-between items-center mb-2">
-                        <span style="font-size: 14px; font-weight: 900; color: var(--primary-color);">スタンダード</span>
-                        <span style="font-size: 20px; font-weight: 900; color: var(--text-main);">¥900<span style="font-size: 12px; color: var(--text-sub);"> / 月</span></span>
+                        <span style="font-size: 16px; font-weight: 900; color: var(--primary-color);">スタンダード</span>
+                        <span style="font-size: 24px; font-weight: 900; color: var(--text-main);">¥900<span style="font-size: 12px; color: var(--text-sub);"> / 月</span></span>
                     </div>
-                    <div class="text-xs font-bold" style="color: var(--primary-color);">年間データ転送量上限: 1TB</div>
+                    <div class="text-xs font-bold" style="color: var(--primary-color); display:flex; align-items:center; gap:4px;"><span style="font-size:14px;">☁️</span> 年間データ転送量上限: 1TB</div>
                 </label>
                 <!-- Premium -->
-                <label id="plan-premium" class="plan-card border border-gray-200 rounded-xl p-4 cursor-pointer relative transition-all" style="border:1px solid #e2e8f0; border-radius:12px; display:block;" tabindex="0" onclick="selectPlan('premium', 1500, 'プレミアム_2TB/年')">
+                <label id="plan-premium" class="plan-card p-4 cursor-pointer transition-all" style="position:relative; z-index:1; border:1px solid #e2e8f0; border-radius:12px; display:block; padding: 20px 16px; background:#fff; transform:scale(1); box-shadow:none;" tabindex="0" onclick="selectPlan('premium', 1500, 'プレミアム_2TB/年')">
                     <div class="flex justify-between items-center mb-2">
-                        <span style="font-size: 14px; font-weight: 900; color: #D69E2E;">プレミアム</span>
-                        <span style="font-size: 18px; font-weight: 900; color: #1a202c;">¥1,500<span style="font-size: 12px; color: #718096;"> / 月</span></span>
+                        <span style="font-size: 15px; font-weight: 900; color: #D69E2E;">プレミアム</span>
+                        <span style="font-size: 20px; font-weight: 900; color: #1a202c;">¥1,500<span style="font-size: 12px; color: #718096;"> / 月</span></span>
                     </div>
-                    <div class="text-xs font-bold" style="color: #D69E2E;">年間データ転送量上限: 2TB</div>
+                    <div class="text-xs font-bold" style="color: #D69E2E; display:flex; align-items:center; gap:4px;"><span style="font-size:14px;">☁️</span> 年間データ転送量上限: 2TB</div>
                 </label>
             </div>
 
@@ -367,10 +367,16 @@
             document.querySelectorAll('.plan-card').forEach(card => {
                 card.style.border = '1px solid #e2e8f0';
                 card.style.background = '#fff';
+                card.style.transform = 'scale(1)';
+                card.style.boxShadow = 'none';
+                card.style.zIndex = '1';
             });
             const el = document.getElementById('plan-' + id);
             el.style.border = '2px solid var(--primary-color)';
             el.style.background = '#FFF0F5';
+            el.style.transform = 'scale(1.02)';
+            el.style.boxShadow = '0 8px 16px rgba(255,107,0,0.15)';
+            el.style.zIndex = '10';
             
             const descParts = descRaw.split('_');
             currentPlanName = descParts[0];

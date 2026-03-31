@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -98,9 +98,6 @@
 
         <div class="album-meta-card">
             
-            <div class="curator-badge">Curator Lv.3</div>
-            
-            <div class="badge-arch">✨ 神アーカイブ</div>
             <h1 class="am-title">夏服生写真メイキング映像</h1>
             
             <p class="am-desc">
@@ -138,12 +135,35 @@
             </div>
 
             <div class="list-header">
-                コレクション内容 <span>全 20 コンテンツ</span>
+                コレクション内容 <span id="totalItemsCount" style="font-size: 11px;">全 5 コンテンツ</span>
             </div>
             
-            <!-- Dynamic Content List Container -->
-            <div class="content-list" id="contentList">
-                <!-- Javascript will populate 20 items here -->
+            <!-- Content Tabs -->
+            <div class="content-tabs" style="display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; border-bottom: 1px solid var(--border-color); -webkit-overflow-scrolling: touch;">
+                <button class="ct-btn active" data-target="pane-god" style="white-space:nowrap; padding:8px 16px; border-radius:20px; border:none; background:var(--text-main); font-weight:800; font-size:12px; color:#FFF; transition:0.2s; cursor:pointer;">神アーカイブ</button>
+                <button class="ct-btn" data-target="pane-shared" style="white-space:nowrap; padding:8px 16px; border-radius:20px; border: 1px solid var(--border-color); background:#FFF; font-weight:800; font-size:12px; color:var(--text-sub); transition:0.2s; cursor:pointer;">共有アーカイブ</button>
+                <button class="ct-btn" data-target="pane-official" style="white-space:nowrap; padding:8px 16px; border-radius:20px; border: 1px solid var(--border-color); background:#FFF; font-weight:800; font-size:12px; color:var(--text-sub); transition:0.2s; cursor:pointer;">公認コンテンツ</button>
+            </div>
+
+            <!-- Tab 1: God Archive -->
+            <div id="pane-god" class="ct-pane active" style="display:block;">
+                <div style="text-align:center; padding: 40px 0; color: var(--text-sub); font-size: 12px; font-weight: 800; background: #FFF; border-radius: 16px; border: 1px dashed var(--border-color);">
+                    まだ神アーカイブはありません。
+                </div>
+            </div>
+
+            <!-- Tab 2: Shared Archive -->
+            <div id="pane-shared" class="ct-pane" style="display:none;">
+                <div class="content-list" id="contentList">
+                    <!-- Javascript will populate items here -->
+                </div>
+            </div>
+
+            <!-- Tab 3: Official -->
+            <div id="pane-official" class="ct-pane" style="display:none;">
+                <div style="text-align:center; padding: 40px 0; color: var(--text-sub); font-size: 12px; font-weight: 800; background: #FFF; border-radius: 16px; border: 1px dashed var(--border-color);">
+                    まだ公認コンテンツはありません。
+                </div>
             </div>
             
             <div style="height: 40px;"></div>
@@ -168,32 +188,17 @@
 
     <script>
         const contentData = [
-            { img: 'view_summer_list/aoi_summer_01.png', type: 'video', time: '02:15', title: '登場シーン 歓喜の瞬間' },
-            { img: 'view_summer_list/aoi_summer_02.png', type: 'photo', time: '', title: '特別衣装 全身ショット' },
-            { img: 'view_summer_list/aoi_summer_03.png', type: 'video', time: '05:30', title: '神MC 爆笑トーク集' },
-            { img: 'view_summer_list/aoi_summer_04.png', type: 'photo', time: '', title: 'バックステージ オフショット' },
-            { img: 'view_summer_list/aoi_summer_05.png', type: 'video', time: '01:45', title: 'カメラ目線の神ウインク' },
-            { img: 'view_summer_list/aoi_summer_06.png', type: 'video', time: '03:20', title: '定番曲 ラスサビの盛り上がり' },
-            { img: 'view_summer_list/aoi_summer_07.png', type: 'photo', time: '', title: '観客席へのレス ファンサ神対応' },
-            { img: 'view_summer_list/aoi_summer_08.png', type: 'video', time: '10:05', title: 'ゲストコラボ楽曲 フルVer' },
-            { img: 'view_summer_list/aoi_summer_09.png', type: 'photo', time: '', title: 'ライブ終了後 集合写真' },
-            { img: 'view_summer_list/aoi_summer_10.png', type: 'video', time: '04:12', title: 'アンコール 涙のMC' },
-            { img: 'view_summer_list/aoi_summer_11.png', type: 'video', time: '02:45', title: 'ステージ袖からの隠し撮り' },
-            { img: 'view_summer_list/aoi_summer_12.png', type: 'photo', time: '', title: 'リハーサル中の真剣な表情' },
-            { img: 'view_summer_list/aoi_summer_13.png', type: 'video', time: '06:10', title: 'メンバー紹介 パフォーマンス' },
-            { img: 'view_summer_list/aoi_summer_14.png', type: 'photo', time: '', title: 'サプライズケーキ登場' },
-            { img: 'view_summer_list/aoi_summer_15.png', type: 'video', time: '03:50', title: 'ソロダンス メドレー' },
-            { img: 'view_summer_list/aoi_summer_16.png', type: 'video', time: '01:25', title: '投げキッス＆お手振り' },
-            { img: 'view_summer_list/aoi_summer_17.png', type: 'photo', time: '', title: '円陣 気合い入れシーン' },
-            { img: 'view_summer_list/aoi_summer_18.png', type: 'video', time: '08:30', title: 'バラード曲 アコースティックVer' },
-            { img: 'view_summer_list/aoi_summer_19.png', type: 'photo', time: '', title: 'タオルを振り回す全力笑顔' },
-            { img: 'view_summer_list/aoi_summer_20.png', type: 'video', time: '05:00', title: 'エンディング 全員でジャンプ' }
+            { img: 'view_summer_list/aoi_summer_01.png', type: 'video', time: '06:12', title: '海辺ではしゃぐ夏の笑顔' },
+            { img: 'view_summer_list/aoi_summer_02.png', type: 'photo', time: '', title: '麦わら帽子と夏空のオフショット' },
+            { img: 'view_summer_list/aoi_summer_03.png', type: 'video', time: '04:45', title: '浴衣に着替える前の楽屋密着' },
+            { img: 'view_summer_list/aoi_summer_04.png', type: 'photo', time: '', title: 'スイカ割りに挑戦！無邪気な一枚' },
+            { img: 'view_summer_list/aoi_summer_05.png', type: 'video', time: '03:20', title: '夕暮れの砂浜を歩くエモい瞬間' }
         ];
 
         const listContainer = document.getElementById('contentList');
         
-        // Generate 20 items
-        for (let i = 0; i < 20; i++) {
+        // Generate items
+        for (let i = 0; i < contentData.length; i++) {
             const data = contentData[i];
             const badgeIcon = data.type === 'video' ? '🎥' : '🖼';
             const badgeText = data.type === 'video' ? data.time : '画像';
@@ -256,6 +261,50 @@
             document.getElementById('sysOverlay').classList.remove('show');
             document.getElementById('shareModal').classList.remove('show');
         }
+
+        // Tab Navigation Logic
+        const ctBtns = document.querySelectorAll('.ct-btn');
+        const ctPanes = document.querySelectorAll('.ct-pane');
+
+        function activateContentTab(targetId) {
+            ctBtns.forEach(b => {
+                if(b.getAttribute('data-target') === targetId) {
+                    b.classList.add('active');
+                    b.style.background = 'var(--text-main)';
+                    b.style.color = '#FFF';
+                    b.style.border = 'none';
+                } else {
+                    b.classList.remove('active');
+                    b.style.background = '#FFF';
+                    b.style.color = 'var(--text-sub)';
+                    b.style.border = '1px solid var(--border-color)';
+                }
+            });
+            ctPanes.forEach(p => {
+                if(p.id === targetId) {
+                    p.style.display = 'block';
+                } else {
+                    p.style.display = 'none';
+                }
+            });
+        }
+
+        ctBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                activateContentTab(btn.getAttribute('data-target'));
+                history.replaceState(null, null, '#' + btn.getAttribute('data-target'));
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            if(hash && document.getElementById(hash)) {
+                activateContentTab(hash);
+                setTimeout(() => {
+                    document.querySelector('.list-header').scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+            }
+        });
     </script>
     <!-- Tipping Flow Modals Common -->
     <style>
